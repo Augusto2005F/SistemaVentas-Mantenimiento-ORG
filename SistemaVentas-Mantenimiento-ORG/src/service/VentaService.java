@@ -34,7 +34,6 @@ public class VentaService {
         Console.info("Venta creada para: " + cliente.getNombre());
     }
 
-    // Método privado reutilizable para eliminar el code smell de duplicación
     private boolean esVentaActiva() {
         if (ventaActual == null) {
             Console.error("No hay venta activa");

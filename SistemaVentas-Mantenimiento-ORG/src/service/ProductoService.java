@@ -15,7 +15,7 @@ public class ProductoService {
 
     public void registrarProducto(int id, String nombre, double precio) {
 
-        // Validación robusta añadida para corregir el bug intencional
+
         if (!Validaciones.validarPrecio(precio) || precio <= 0) {
             Console.error("Precio inválido");
             return;
