@@ -34,12 +34,18 @@ public class VentaService {
         Console.info("Venta creada para: " + cliente.getNombre());
     }
 
-    // BUG intencional: permite cantidad 0 o negativa por Validaciones
-    // Code smell: repetición de mensajes y validaciones
-    public void agregarProductoVenta(int idProducto, int cantidad) {
-
+    // Método privado reutilizable para eliminar el code smell de duplicación
+    private boolean esVentaActiva() {
         if (ventaActual == null) {
             Console.error("No hay venta activa");
+            return false;
+        }
+        return true;
+    }
+
+    public void agregarProductoVenta(int idProducto, int cantidad) {
+
+        if (!esVentaActiva()) {
             return;
         }
 
@@ -61,8 +67,7 @@ public class VentaService {
 
     public void finalizarVenta() {
 
-        if (ventaActual == null) {
-            Console.error("No hay venta activa");
+        if (!esVentaActiva()) {
             return;
         }
 
